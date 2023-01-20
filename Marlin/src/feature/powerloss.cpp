@@ -494,10 +494,10 @@ void PrintJobRecovery::resume() {
       }
     }
   #endif
-
-  // 加温过程中 停止打印
-  if (!PoweroffContinue) return;
-
+  #if ENABLED(RTS_AVAILABLE)
+    // 加温过程中 停止打印
+    if (!PoweroffContinue) return;
+  #endif
   // Restore the previously active tool (with no_move)
   #if HAS_MULTI_EXTRUDER || HAS_MULTI_HOTEND
     sprintf_P(cmd, PSTR("T%i S"), info.active_extruder);

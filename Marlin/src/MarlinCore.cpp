@@ -395,7 +395,9 @@ void startOrResumeJob() {
     #ifdef EVENT_GCODE_SD_ABORT
       // queue.inject_P(PSTR(EVENT_GCODE_SD_ABORT));
       gcode.process_subcommands_now_P(PSTR(EVENT_GCODE_SD_ABORT));
+#ifdef RTS_AVAILABLE
       rtscheck.RTS_SndData(0, MOTOR_FREE_ICON_VP);
+#endif
     #endif
 
     TERN_(PASSWORD_AFTER_SD_PRINT_ABORT, password.lock_machine());
