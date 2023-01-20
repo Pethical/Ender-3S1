@@ -206,15 +206,15 @@ void BL24CXX::writeOneByte(uint16_t WriteAddr, uint8_t DataToWrite) {
     IIC::wait_ack();
     IIC::send_byte(WriteAddr >> 8);               // Send high address
   }
-  else
-    IIC::send_byte(EEPROM_DEVICE_ADDRESS + ((WriteAddr >> 8) << 1)); // Send device address 0xA0, write data
-
-    IIC::wait_ack();
-    IIC::send_byte(WriteAddr & 0xFF);               // Send low address
-    IIC::wait_ack();
-    IIC::send_byte(DataToWrite);                    // Receiving mode
-    IIC::wait_ack();
-    IIC::stop();                                    // Generate a stop condition
+  else {
+      IIC::send_byte(EEPROM_DEVICE_ADDRESS + ((WriteAddr >> 8) << 1)); // Send device address 0xA0, write data
+  }
+  IIC::wait_ack();
+  IIC::send_byte(WriteAddr & 0xFF);               // Send low address
+  IIC::wait_ack();
+  IIC::send_byte(DataToWrite);                    // Receiving mode
+  IIC::wait_ack();
+  IIC::stop();                                    // Generate a stop condition
   delay(10);
 }
 
