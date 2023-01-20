@@ -537,18 +537,19 @@ void RTSSHOW::RTS_Init(void)
   rtscheck.RTS_SndData(ExchangePageBase, ExchangepageAddr);
   change_page_font = 0;
   HAL_watchdog_refresh();
+#if ENABLED(SHOW_SLOW_CREALITY_LOGO_AT_STARTUP)
   for(startprogress = 0; startprogress <= 100; startprogress++)
   {
     rtscheck.RTS_SndData(startprogress, START_PROCESS_ICON_VP);
-    HAL_watchdog_refresh();  
+    HAL_watchdog_refresh();
     delay(100);
   }
   HAL_watchdog_refresh();
   delay(500);
-  // delay(500);
-  // delay(500);
-  // delay(500);
-
+#else
+    startprogress = 100;
+    rtscheck.RTS_SndData(startprogress, START_PROCESS_ICON_VP);
+#endif
   Update_Time_Value = RTS_UPDATE_VALUE;
 }
 

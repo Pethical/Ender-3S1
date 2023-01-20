@@ -2886,6 +2886,8 @@
 #if ENABLED(RTS_AVAILABLE)
   #define LCD_SERIAL_PORT 2
   #define LCD_BAUDRATE 115200
+// uncomment, to show Creality logo animation at the startup
+//  #define SHOW_SLOW_CREALITY_LOGO_AT_STARTUP
 #else
   #define CR10_STOCKDISPLAY
 #endif
