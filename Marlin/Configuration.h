@@ -75,8 +75,8 @@
 #define ENDER_3S1_PRO
   
 // 主控芯片
-#define USER_STM32F103  1
-// #define USER_STM32F401  1
+//#define USER_STM32F103  1
+#define USER_STM32F401  1
 
 
 #if ENABLED(ENDER_3S1_PRO)
@@ -91,7 +91,6 @@
       #define SHORT_BUILD_VERSION "2.0.8.24F1" //F103版本
     #elif ENABLED(USER_STM32F401)
       #define SHORT_BUILD_VERSION "2.0.8.24F4" // F401版本
-
     #endif
     
   #endif
@@ -1653,7 +1652,7 @@
  * NOTE: Requires a lot of PROGMEM!
  */
 //zhang
-#define DEBUG_LEVELING_FEATURE
+//#define DEBUG_LEVELING_FEATURE
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL, PROBE_MANUALLY)
   // Set a height for the start of manual adjustment
@@ -1694,7 +1693,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 4
+  #define GRID_MAX_POINTS_X 6
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -1935,7 +1934,7 @@
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
 #define EEPROM_SETTINGS     // Persistent storage with M500 and M501
-//#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
+#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
