@@ -231,14 +231,6 @@
 //#define SERIAL_PORT_3 1
 //#define BAUDRATE_3 250000   // Enable to override BAUDRATE
 
-/**
- * Select a third serial port on the board to use for communication with lcd.
- * Currently only supported for AVR, DUE, LPC1768/9 and STM32/STM32F1
- * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
- */
- #define LCD_SERIAL_PORT 2 
- #define LCD_BAUDRATE 115200
-
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
 
@@ -2891,6 +2883,12 @@
 
 // resistive touch screen
 #define RTS_AVAILABLE
+#if ENABLED(RTS_AVAILABLE)
+  #define LCD_SERIAL_PORT 2
+  #define LCD_BAUDRATE 115200
+#else
+  #define CR10_STOCKDISPLAY
+#endif
 
 //
 // Touch Screen Settings

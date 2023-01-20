@@ -607,7 +607,7 @@ void GCodeQueue::get_serial_commands() {
     if (!IS_SD_FETCHING()) return;
 
     int sd_count = 0;
-    while (!ring_buffer.full() && !card.eof() && rtscheck.RTS_SD_Detected()) {
+    while (!ring_buffer.full() && !card.eof() && TERN1(RTS_AVAILABLE, rtscheck.RTS_SD_Detected())) {
       const int16_t n = card.get();
       const bool card_eof = card.eof();
       if (n < 0 && !card_eof) { SERIAL_ERROR_MSG(STR_SD_ERR_READ); continue; }
