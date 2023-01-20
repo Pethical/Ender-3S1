@@ -182,9 +182,9 @@ uint8_t BL24CXX::readOneByte(uint16_t ReadAddr) {
     IIC::send_byte(ReadAddr >> 8);                // Send high address
     IIC::wait_ack();
   }
-  else
-    IIC::send_byte(EEPROM_DEVICE_ADDRESS + ((ReadAddr >> 8) << 1)); // Send device address 0xA0, write data
-
+  else {
+      IIC::send_byte(EEPROM_DEVICE_ADDRESS + ((ReadAddr >> 8) << 1)); // Send device address 0xA0, write data
+  }
   IIC::wait_ack();
   IIC::send_byte(ReadAddr & 0xFF);                // Send low address
   IIC::wait_ack();
